@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voley Player List</title>
+</head>
+<body>
+    <h1>Voley Player List</h1>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date Joined</th>
+            <th>Position</th>
+            <th>Salary/Payment</th>
+            <th>Contact Person</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for player in players %}
+        <tr>
+            <td>{{ player.id }}</td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.date_joined }}</td>
+            <td>{{ player.position }}</td>
+            <td>{{ player.salary }}</td>
+            <td>{{ player.contact_person }}</td>
+            <td>
+                <a href="{% url 'update_player' player.id %}">Edit</a>
+                <a href="{% url 'delete_player' player.id %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No players found.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="{% url 'index' %}">Back</a>
+
+</body>
+</html>
